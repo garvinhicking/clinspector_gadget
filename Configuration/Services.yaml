@@ -5,7 +5,7 @@ services:
     public: true
 
   Garvinhicking\ClinspectorGadget\:
-    resource: '../Classes/'
+    resource: '../Classes/*'
 
   Garvinhicking\ClinspectorGadget\Command\ClinspectorGadgetCommand:
     tags:
