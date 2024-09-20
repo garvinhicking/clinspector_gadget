@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  Garvinhicking\ClinspectorGadget\:
+    resource: '../Classes/'
+
+  Garvinhicking\ClinspectorGadget\Command\ClinspectorGadgetCommand:
+    tags:
+      - name: console.command
+        command: 'clinspector:gadget'
+        description: 'Get JSON of all commands.'
