@@ -20,14 +20,26 @@ class ClinspectorGadgetCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        // Capture the current output in a buffer
+        $bufferedOutput = new \Symfony\Component\Console\Output\BufferedOutput();
+    
         $helper = new DescriptorHelper();
         $helper->describe(
-            $output,
+            $bufferedOutput,
             $this->getApplication(),
             [
                 'format' => 'json',
             ]
         );
+
+        // Get the raw JSON output
+        $jsonOutput = $bufferedOutput->fetch();
+
+        // Decode and re-encode with pretty print
+        $prettyJson = json_encode(json_decode($jsonOutput), JSON_PRETTY_PRINT);
+
+        // Output the prettified JSON
+        $output->writeln($prettyJson);
 
         return Command::SUCCESS;
     }
