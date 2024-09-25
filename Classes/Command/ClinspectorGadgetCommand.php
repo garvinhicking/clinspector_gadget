@@ -36,10 +36,10 @@ class ClinspectorGadgetCommand extends Command
         $jsonOutput = $bufferedOutput->fetch();
 
         // Decode and re-encode with pretty print
-        $prettyJson = json_encode(json_decode($jsonOutput), JSON_PRETTY_PRINT);
+        $prettyJson = json_encode(json_decode($jsonOutput, true), JSON_PRETTY_PRINT);
 
         // Output the prettified JSON
-        $output->writeln($prettyJson);
+        $output->writeln($prettyJson, $output::OUTPUT_RAW);
 
         return Command::SUCCESS;
     }
